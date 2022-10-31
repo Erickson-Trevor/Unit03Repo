@@ -1,34 +1,35 @@
 import turtle
 
-def face_base(c,r):
-    turtle.penup()
-    turtle.forward(r)
-    turtle.left(90)
-    turtle.pendown()
-    turtle.fillcolor(c)
-    turtle.begin_fill()
-    turtle.circle(r)
-    turtle.end_fill()
-    turtle.penup()
-    turtle.home()
-    turtle.pendown()
-
-def nose(c,r):
-    turtle.penup()
-    turtle.forward(r)
-    turtle.left(90)
-    turtle.pendown()
-    turtle.fillcolor(c)
-    turtle.begin_fill()
-    turtle.circle(r)
-    turtle.end_fill()
-    turtle.penup()
-    turtle.home()
-    turtle.pendown()
-
-def eye(r,c,x,y):
+def face_base(c,r,x,y):
     turtle.penup()
     turtle.goto(x,y)
+    turtle.forward(r)
+    turtle.left(90)
+    turtle.pendown()
+    turtle.fillcolor(c)
+    turtle.begin_fill()
+    turtle.circle(r)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(x,y)
+    turtle.pendown()
+
+def nose(c,r,x,y):
+    turtle.penup()
+    turtle.forward(r)
+    turtle.left(90)
+    turtle.pendown()
+    turtle.fillcolor(c)
+    turtle.begin_fill()
+    turtle.circle(r)
+    turtle.end_fill()
+    turtle.penup()
+    turtle.goto(x,y)
+    turtle.pendown()
+
+def eye(r,c,x,y,x1,y1):
+    turtle.penup()
+    turtle.goto(x1,y1)
     turtle.forward(r)
     turtle.left(90)
     turtle.pendown()
@@ -55,12 +56,12 @@ def eye(r,c,x,y):
     turtle.circle(r/4)
     turtle.end_fill()
     turtle.penup()
-    turtle.home()
+    turtle.goto(x,y)
     turtle.pendown()
 
-def mouth(r):
+def mouth(r,x,y):
     turtle.penup()
-    turtle.goto(-r*.6,-r*.25)
+    turtle.goto(-r*.6+x,-r*.25+y)
     turtle.right(90)
     turtle.pendown()
     turtle.fillcolor("black")
@@ -72,21 +73,23 @@ def mouth(r):
     turtle.pendown()
 
 
-def main():
-    turtle.speed(6)
+def main(x,y,c):
+    turtle.speed(12)
     face_color = "gold"
     face_size = 100
-    face_base(face_color,face_size)
+    face_base(face_color,face_size,x,y)
 
     nose_color = "indianred1"
-    nose(nose_color, face_size*.1)
+    nose(nose_color, face_size*.1,x,y)
 
-    iris_color = "dodgerblue3"
-    eye(face_size/4,iris_color,face_size*.35,face_size*.25)
-    eye(face_size/4,iris_color,face_size*-.35,face_size*.25)
+    iris_color = c
+    eye(face_size/4,iris_color,x,y,face_size*.35+x,face_size*.25+y)
+    eye(face_size/4,iris_color,x,y,face_size*-.35+x,face_size*.25+y)
 
-    mouth(face_size)
+    mouth(face_size,x,y)
 
-    input("Awaiting imput: ")
 
-main()
+main(0,0,"firebrick")
+main(200,-169,"dimgray")
+main(300,30,"dodgerblue3")
+input("Awaiting Input: ")
